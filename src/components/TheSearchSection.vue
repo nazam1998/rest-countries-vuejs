@@ -30,6 +30,7 @@
           class="m-md-2 border rounded shadow-sm"
           :class="darkMode ? 'dark-dropdown' : ''"
         >
+          <b-dropdown-item @click="filterByRegion('All')">All</b-dropdown-item>
           <b-dropdown-item @click="filterByRegion('Africa')"
             >Africa</b-dropdown-item
           >
@@ -73,7 +74,11 @@ export default {
   methods: {
     filterByRegion: function (value) {
       this.currentRegion = value;
-      this.$store.dispatch("callByRegion", value);
+      if (this.currentRegion != "All") {
+        this.$store.dispatch("callByRegion", value);
+      } else {
+        this.$store.dispatch("callCountries");
+      }
     },
   },
   computed: {

@@ -4,6 +4,7 @@
     :type="darkMode ? 'dark' : 'light'"
     :variant="darkMode ? 'dark' : 'light'"
     :class="{ shadow: darkMode }"
+    class="mb-5"
   >
     <router-link :to="{ name: 'Home' }">
       <b-navbar-brand class="font-weight-bold ml-5"

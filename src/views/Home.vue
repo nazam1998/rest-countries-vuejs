@@ -1,14 +1,21 @@
 <template>
-  <div class="home my-5">
+  <div class="home" :class="{ darkHome: darkMode }">
     <b-container>
       <the-search-section />
       <b-row id="countries">
         <country
-          v-for="(country, index) in countries"
+          v-for="(country, index) in pageOfItems"
           :key="index"
           :country="country"
         />
       </b-row>
+      <jw-pagination
+        :items="countries"
+        @changePage="onChangePage"
+        :pageSize="20"
+        :styles="paginationStyle"
+        class="mx-auto my-3"
+      ></jw-pagination>
     </b-container>
   </div>
 </template>
@@ -27,18 +34,35 @@ export default {
   },
   data() {
     return {
-      perPage: 9,
-      currentPage: 1,
+      pageOfItems: [],
     };
   },
   mounted() {
     this.$store.dispatch("callCountries");
   },
+  methods: {
+    onChangePage(pageOfItems) {
+      this.pageOfItems = pageOfItems;
+    },
+  },
   computed: {
     rows: function () {
       return this.countries.length;
     },
-    ...mapState(["countries"]),
+    paginationStyle: function () {
+      return {
+        ul: {
+          backgroundColor: this.darkMode ? "#343a40" : "",
+        },
+      };
+    },
+    ...mapState(["countries", "darkMode"]),
   },
 };
 </script>
+
+<style scoped>
+.darkHome {
+  background: #343a40;
+}
+</style>
