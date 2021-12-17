@@ -39,19 +39,19 @@
             @click="filterByRegion('All')"
             >All</b-dropdown-item
           >
-          <b-dropdown-item @click="filterByRegion('Africa')"
+          <b-dropdown-item v-if="currentRegion != 'Africa'" @click="filterByRegion('Africa')"
             >Africa</b-dropdown-item
           >
-          <b-dropdown-item @click="filterByRegion('Americas')"
+          <b-dropdown-item v-if="currentRegion != 'Americas'" @click="filterByRegion('Americas')"
             >Americas</b-dropdown-item
           >
-          <b-dropdown-item @click="filterByRegion('Asia')"
+          <b-dropdown-item v-if="currentRegion != 'Asia'" @click="filterByRegion('Asia')"
             >Asia</b-dropdown-item
           >
-          <b-dropdown-item @click="filterByRegion('Europe')"
+          <b-dropdown-item v-if="currentRegion != 'Europe'" @click="filterByRegion('Europe')"
             >Europe</b-dropdown-item
           >
-          <b-dropdown-item @click="filterByRegion('Oceania')"
+          <b-dropdown-item v-if="currentRegion != 'Oceania'" @click="filterByRegion('Oceania')"
             >Oceania</b-dropdown-item
           >
         </b-dropdown>
