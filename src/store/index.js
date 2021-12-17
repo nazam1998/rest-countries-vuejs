@@ -10,6 +10,7 @@ export default new Vuex.Store({
     countries: null,
     currentCountry: null,
     darkMode: false,
+    searchValue: '',
   },
   mutations: {
     setCountries: function (state, value) {
@@ -23,8 +24,8 @@ export default new Vuex.Store({
       document.body.backgroundColor = state.darkMode ? '#343a40' : '';
       document.body.color = state.darkMode ? 'white' : '';
     },
-    searchCountries: function (state, value) {
-      state.countries = state.countries.filter(elem => elem.name.toLowerCase().startsWith(value))
+    setSearchValue: function (state, value) {
+      state.searchValue = value;
     }
   },
   getters: {
@@ -64,5 +65,7 @@ export default new Vuex.Store({
     }
   },
   modules: {},
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState({
+    paths: ['countries', 'currentRegion', 'darkMode', 'currentCountry']
+  })],
 })

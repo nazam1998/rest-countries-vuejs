@@ -16,7 +16,7 @@
           <b-form-input
             class="search-input"
             size="lg"
-            v-model="searchValue"
+            v-model="inputSearch"
             placeholder="Search for a country"
           >
           </b-form-input>
@@ -34,7 +34,11 @@
           class="m-md-2 border rounded shadow-sm"
           :class="darkMode ? 'dark-dropdown' : ''"
         >
-          <b-dropdown-item @click="filterByRegion('All')">All</b-dropdown-item>
+          <b-dropdown-item
+            v-if="currentRegion != 'All'"
+            @click="filterByRegion('All')"
+            >All</b-dropdown-item
+          >
           <b-dropdown-item @click="filterByRegion('Africa')"
             >Africa</b-dropdown-item
           >
@@ -61,16 +65,17 @@ export default {
   name: "TheSearchSection",
   data() {
     return {
-      searchValue: null,
-      currentRegion: null,
+      inputSearch: null,
+      currentRegion: "All",
       msg: null,
     };
   },
   watch: {
-    searchValue: function (value) {
-      if (this.searchValue != "") {
-        this.$store.commit("searchCountries", value);
+    inputSearch: function (value) {
+      if (this.inputSearch != "") {
+        this.$store.commit("setSearchValue", value);
       } else {
+        this.$store.commit("setSearchValue", value);
         this.$store.dispatch("callCountries");
       }
     },
@@ -89,7 +94,7 @@ export default {
     darkMode: function () {
       return this.$store.getters.darkMode;
     },
-    ...mapState(["countries"]),
+    ...mapState(["countries", "searchValue"]),
   },
 };
 </script>

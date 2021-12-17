@@ -16,6 +16,7 @@ const routes = [{
     props: true,
     component: () => import( /* webpackChunkName: "about" */ '../views/CountryDetails.vue'),
     beforeEnter: (to, from, next) => {
+      store.commit('setSearchValue', '')
       let exist = store.getters.countries.find(elem => elem.alpha3Code == to.params.country || elem.name === to.params.country);
       if (exist) {
         next()

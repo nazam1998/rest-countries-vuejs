@@ -10,7 +10,7 @@
         />
       </b-row>
       <jw-pagination
-        :items="countries"
+        :items="currentCountries"
         @changePage="onChangePage"
         :pageSize="20"
         :styles="paginationStyle"
@@ -49,6 +49,15 @@ export default {
     rows: function () {
       return this.countries.length;
     },
+    currentCountries: function () {
+      if (this.searchValue != null) {
+        return this.countries.filter((elem) =>
+          elem.name.toLowerCase().startsWith(this.searchValue.toLowerCase())
+        );
+      } else {
+        return this.countries;
+      }
+    },
     paginationStyle: function () {
       return {
         ul: {
@@ -62,7 +71,7 @@ export default {
         },
       };
     },
-    ...mapState(["countries", "darkMode"]),
+    ...mapState(["countries", "darkMode", "searchValue"]),
   },
 };
 </script>
