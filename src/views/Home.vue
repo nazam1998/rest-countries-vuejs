@@ -52,7 +52,13 @@ export default {
     paginationStyle: function () {
       return {
         ul: {
+          backgroundColor: this.darkMode ? "#343a40 !important" : "",
+        },
+
+        a: {
+          color: this.darkMode ? "white" : "#343a40",
           backgroundColor: this.darkMode ? "#343a40" : "",
+          border: this.darkMode ? "1px solid white" : "",
         },
       };
     },

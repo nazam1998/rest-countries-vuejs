@@ -25,7 +25,11 @@
       <b-col cols="3" class="text-right">
         <b-dropdown
           id="dropdown-1"
-          :text="currentRegion ? currentRegion : 'Filter by Region'"
+          :text="
+            currentRegion && currentRegion != 'All'
+              ? currentRegion
+              : 'Filter by Region'
+          "
           :variant="darkMode ? 'dark' : 'white'"
           class="m-md-2 border rounded shadow-sm"
           :class="darkMode ? 'dark-dropdown' : ''"
