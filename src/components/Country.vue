@@ -23,7 +23,7 @@
           <span class="font-weight-bold">Region:</span> {{ country.region }}
         </p>
         <p>
-          <span class="font-weight-bold">Capital:</span> {{ country.capital }}
+          <span v-if="country.capital" class="font-weight-bold">Capital:</span> {{ country.capital }}
         </p>
       </b-card-text>
     </b-card>

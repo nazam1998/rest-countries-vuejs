@@ -74,7 +74,7 @@
               <span class="font-weight-bold">Sub Region: </span>
               {{ currentCountry.subregion }}
             </b-col>
-            <b-col cols="12">
+            <b-col cols="12" v-if="currentCountry.capital">
               <span class="font-weight-bold">Capital: </span>
               {{ currentCountry.capital }}
             </b-col>
