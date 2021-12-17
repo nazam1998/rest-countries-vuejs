@@ -81,14 +81,19 @@
           </b-row>
           <div class="my-3 border-countries" v-if="borderCountries">
             <span class="font-weight-bold">Border Countries :</span>
-            <router-link
-              :to="{ name: 'Country', params: { country: border.alpha3Code } }"
-              class="border py-1 px-3 text-center mx-2"
-              v-for="(border, index) in borderCountries"
-              :key="index"
-              :class="{ 'text-white': darkMode, 'text-dark': !darkMode }"
-              >{{ border.name }}
-            </router-link>
+            <b-row class="justify-content-center align-items-stretch">
+              <router-link
+                :to="{
+                  name: 'Country',
+                  params: { country: border.alpha3Code },
+                }"
+                class="border py-1 px-3 text-center col-5 m-2"
+                v-for="(border, index) in borderCountries"
+                :key="index"
+                :class="{ 'text-white': darkMode, 'text-dark': !darkMode }"
+                >{{ border.name }}
+              </router-link>
+            </b-row>
           </div>
         </b-col>
       </b-row>
