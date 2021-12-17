@@ -22,6 +22,9 @@ export default new Vuex.Store({
       state.darkMode = !state.darkMode;
       document.body.backgroundColor = state.darkMode ? '#343a40' : '';
       document.body.color = state.darkMode ? 'white' : '';
+    },
+    searchCountries: function (state, value) {
+      state.countries = state.countries.filter(elem => elem.name.toLowerCase().startsWith(value))
     }
   },
   getters: {

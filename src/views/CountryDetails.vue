@@ -11,9 +11,13 @@
         />
         Back
       </b-btn>
-      <b-row class="my-3 align-items-center justify-content-between">
+      <b-row class="my-5 align-items-center justify-content-between">
         <b-col cols="5">
-          <img :src="currentCountry.flag" alt="" class="img-fluid" />
+          <img
+            :src="currentCountry.flag"
+            alt=""
+            class="img-fluid img-country"
+          />
         </b-col>
         <b-col cols="6">
           <h3 class="font-weight-bold">{{ currentCountry.name }}</h3>
@@ -36,7 +40,7 @@
             </b-col>
             <b-col cols="6">
               <span class="font-weight-bold">Population: </span>
-              {{ currentCountry.population }}
+              {{ population }}
             </b-col>
             <b-col cols="6">
               <span class="font-weight-bold">Currencies: </span>
@@ -130,5 +134,8 @@ export default {
 <style scoped>
 .border-countries {
   white-space: nowrap;
+}
+.img-country {
+  height: 300px;
 }
 </style>

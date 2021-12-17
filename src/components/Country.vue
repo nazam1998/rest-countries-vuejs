@@ -17,7 +17,7 @@
         <h5 class="font-weight-bold">{{ country.name }}</h5>
         <p>
           <span class="font-weight-bold">Population:</span>
-          {{ country.population }}
+          {{ population }}
         </p>
         <p>
           <span class="font-weight-bold">Region:</span> {{ country.region }}

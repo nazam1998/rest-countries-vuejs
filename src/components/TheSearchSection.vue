@@ -17,7 +17,6 @@
             class="search-input"
             size="lg"
             v-model="searchValue"
-            @keyup.enter="search"
             placeholder="Search for a country"
           >
           </b-form-input>
@@ -62,21 +61,16 @@ export default {
       msg: null,
     };
   },
-  methods: {
-    search: function () {
-      let exists = this.countries.find(
-        (elem) => elem.name.toLowerCase() == this.searchValue.toLowerCase()
-      );
-      if (exists) {
-        this.msg = null;
-        this.$router.push({
-          name: "Country",
-          params: { country: exists.alpha3Code },
-        });
+  watch: {
+    searchValue: function (value) {
+      if (this.searchValue != "") {
+        this.$store.commit("searchCountries", value);
       } else {
-        this.msg = "Not Found";
+        this.$store.dispatch("callCountries");
       }
     },
+  },
+  methods: {
     filterByRegion: function (value) {
       this.currentRegion = value;
       this.$store.dispatch("callByRegion", value);
