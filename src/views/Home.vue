@@ -10,9 +10,11 @@
         />
       </b-row>
       <jw-pagination
+        :labels="labels"
         :items="currentCountries"
         @changePage="onChangePage"
         :pageSize="20"
+        :maxPages="5"
         :styles="paginationStyle"
         class="mx-auto my-3"
       ></jw-pagination>
@@ -52,11 +54,19 @@ export default {
     currentCountries: function () {
       if (this.searchValue != null) {
         return this.countries.filter((elem) =>
-          elem.name.toLowerCase().startsWith(this.searchValue.toLowerCase())
+          elem.name.toLowerCase().includes(this.searchValue.toLowerCase())
         );
       } else {
         return this.countries;
       }
+    },
+    labels: function () {
+      return {
+        first: "<<",
+        last: ">>",
+        previous: "<",
+        next: ">",
+      };
     },
     paginationStyle: function () {
       return {
