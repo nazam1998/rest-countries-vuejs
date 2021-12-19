@@ -15,7 +15,7 @@
         @changePage="onChangePage"
         :pageSize="20"
         :maxPages="5"
-        :styles="paginationStyle"
+        :styles="darkMode ? paginationDarkStyle : paginationStyle"
         class="mx-auto my-3"
       ></jw-pagination>
     </b-container>
@@ -68,18 +68,21 @@ export default {
         next: ">",
       };
     },
-    paginationStyle: function () {
+    paginationDarkStyle: function () {
       return {
         ul: {
-          backgroundColor: this.darkMode ? "#343a40 !important" : "",
+          backgroundColor: "#343a40 !important",
         },
 
         a: {
-          color: this.darkMode ? "white" : "#343a40",
-          backgroundColor: this.darkMode ? "#343a40" : "",
-          border: this.darkMode ? "1px solid white" : "",
+          color: "white",
+          backgroundColor: "#343a40",
+          border: "1px solid white",
         },
       };
+    },
+    paginationStyle: function () {
+      return {};
     },
     ...mapState(["countries", "darkMode", "searchValue"]),
   },
